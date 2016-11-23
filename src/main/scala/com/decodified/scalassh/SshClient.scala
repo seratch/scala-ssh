@@ -62,7 +62,7 @@ class SshClient(val config: HostConfig) extends ScpTransferable {
       command.input.inputStream.foreach(new StreamCopier().copy(_, channel.getOutputStream))
       command.timeout orElse config.commandTimeout match {
         case Some(timeout) ⇒ channel.join(timeout, TimeUnit.MILLISECONDS)
-        case None          ⇒ channel.join()
+        case None ⇒ channel.join()
       }
       new CommandResult(channel)
     }
@@ -104,7 +104,7 @@ class SshClient(val config: HostConfig) extends ScpTransferable {
         }
       } match {
         case Nil ⇒ sys.error("None of the configured keyfiles exists: " + locations.mkString(", "))
-        case x   ⇒ x
+        case x ⇒ x
       }
     }
 

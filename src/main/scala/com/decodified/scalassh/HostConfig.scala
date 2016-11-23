@@ -47,7 +47,8 @@ case class HostConfig(
   enableCompression: Boolean = false,
   hostKeyVerifier: HostKeyVerifier = KnownHosts.right.toOption.getOrElse(DontVerify),
   ptyConfig: Option[PTYConfig] = None,
-  sshjConfig: Config = HostConfig.DefaultSshjConfig)
+  sshjConfig: Config = HostConfig.DefaultSshjConfig
+)
 
 case class PTYConfig(term: String, cols: Int, rows: Int, width: Int, height: Int, modes: java.util.Map[PTYMode, Integer])
 
@@ -93,9 +94,9 @@ abstract class FromStringsHostConfigProvider extends HostConfigProvider {
   private def login(settings: Map[String, String], source: String) = {
     setting("login-type", settings, source).right.flatMap {
       case "password" ⇒ passwordLogin(settings, source)
-      case "keyfile"  ⇒ keyfileLogin(settings, source)
-      case "agent"    ⇒ agentLogin(settings, source)
-      case x          ⇒ Left("Illegal login-type setting '%s' in host config '%s': expecting either 'password' or 'keyfile'".format(x, source))
+      case "keyfile" ⇒ keyfileLogin(settings, source)
+      case "agent" ⇒ agentLogin(settings, source)
+      case x ⇒ Left("Illegal login-type setting '%s' in host config '%s': expecting either 'password' or 'keyfile'".format(x, source))
     }
   }
 
@@ -117,7 +118,7 @@ abstract class FromStringsHostConfigProvider extends HostConfigProvider {
         passphrase.map(SimplePasswordProducer),
         keyfile.map {
           case kf if kf.startsWith("+") ⇒ kf.tail :: DefaultKeyLocations
-          case kf                       ⇒ kf :: Nil
+          case kf ⇒ kf :: Nil
         }.getOrElse(DefaultKeyLocations).map(
           _.replaceFirst("^~/", System.getProperty("user.home") + '/').replace('/', File.separatorChar)
         )
@@ -134,7 +135,7 @@ abstract class FromStringsHostConfigProvider extends HostConfigProvider {
   private def setting(key: String, settings: Map[String, String], source: String) = {
     settings.get(key) match {
       case Some(user) ⇒ Right(user)
-      case None       ⇒ Left("Host config '%s' is missing required setting '%s'".format(source, key))
+      case None ⇒ Left("Host config '%s' is missing required setting '%s'".format(source, key))
     }
   }
 
@@ -153,8 +154,8 @@ abstract class FromStringsHostConfigProvider extends HostConfigProvider {
   private def optBoolSetting(key: String, settings: Map[String, String], source: String) = {
     setting(key, settings, source) match {
       case Right("yes" | "YES" | "true" | "TRUE") ⇒ Right(Some(true))
-      case Right(value)                           ⇒ Left("Value '%s' for setting '%s' in host config '%s' is not a legal integer".format(value, key, source))
-      case Left(_)                                ⇒ Right(None)
+      case Right(value) ⇒ Left("Value '%s' for setting '%s' in host config '%s' is not a legal integer".format(value, key, source))
+      case Left(_) ⇒ Right(None)
     }
   }
 

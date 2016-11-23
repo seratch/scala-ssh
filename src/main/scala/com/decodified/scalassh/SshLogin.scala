@@ -27,7 +27,8 @@ case class PasswordLogin(user: String, passProducer: PasswordProducer) extends S
 case class PublicKeyLogin(
   user: String,
   passProducer: Option[PasswordProducer],
-  keyfileLocations: List[String]) extends SshLogin
+  keyfileLocations: List[String]
+) extends SshLogin
 
 object PublicKeyLogin {
   lazy val DefaultKeyLocations = "~/.ssh/id_rsa" :: "~/.ssh/id_dsa" :: Nil
