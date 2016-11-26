@@ -2,11 +2,8 @@ import scalariform.formatter.preferences._
 
 name := "scala-ssh"
 version := "0.8.0-1"
-//organization := "com.veact"
 organization := "com.github.seratch.com.veact"
-//organizationHomepage := Some(new URL("http://veact.com"))
 description := "A Scala library providing remote shell access via SSH"
-//homepage := Some(new URL("https://github.com/veact/scala-ssh"))
 homepage := Some(new URL("https://github.com/seratch/scala-ssh"))
 startYear := Some(2011)
 licenses := Seq("Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt"))
@@ -25,14 +22,14 @@ libraryDependencies ++= Seq(
 resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases"
 
 scalariformSettings
-
 ///////////////
 // publishing
 ///////////////
 
 crossScalaVersions := Seq("2.12.0", "2.11.8", "2.10.6")
 publishMavenStyle := true
-publishTo <<= version { v: String =>
+publishTo := {
+  val v = version.value
   val nexus = "https://oss.sonatype.org/"
   if (v.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots")
   else                             Some("releases" at nexus + "service/local/staging/deploy/maven2")
@@ -55,5 +52,9 @@ pomExtra :=
     <developer>
       <id>bphelan</id>
       <name>Benjamin Phelan</name>
+    </developer>
+    <developer>
+      <id>seratch</id>
+      <name>Kazuhiro Sera</name>
     </developer>
   </developers>

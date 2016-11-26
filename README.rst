@@ -12,10 +12,10 @@ It builds on SSHJ_ to provide the following features:
 Installation
 ------------
 
-The latest release is **0.8.0** and is built against Scala 2.10 and Scala 2.11.
+The latest release is **0.8.0** and is built against Scala 2.12, 2.11 and 2.10.
 It is available from Maven Central. If you use SBT_ you can pull in the *scala-ssh* artifacts with::
 
-    libraryDependencies += "com.veact" %% "scala-ssh" % "0.8.0"
+    libraryDependencies += "com.github.seratch.com.veact" %% "scala-ssh" % "0.8.0-1"
 
 SSHJ_ uses SLF4J_ for logging, so you might want to also add logback_ to your dependencies::
 
