@@ -10,7 +10,7 @@ description := "A Scala library providing remote shell access via SSH"
 homepage := Some(new URL("https://github.com/seratch/scala-ssh"))
 startYear := Some(2011)
 licenses := Seq("Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt"))
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.8"
 scalacOptions ++= Seq("-feature", "-language:implicitConversions", "-unchecked", "-deprecation", "-encoding", "utf8")
 libraryDependencies ++= Seq(
   "com.hierynomus" % "sshj" % "0.16.0",
@@ -20,7 +20,7 @@ libraryDependencies ++= Seq(
   "com.jcraft" % "jsch.agentproxy.sshj" % "0.0.9",
   "com.jcraft" % "jsch.agentproxy.connector-factory" % "0.0.9",
   "ch.qos.logback" % "logback-classic" % "1.1.7" % "test",
-  "org.specs2" %% "specs2-core" % "3.8.6" % "test"
+  "org.specs2" %% "specs2-core" % "4.6.0" % "test"
 )
 resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases"
 
@@ -30,7 +30,7 @@ scalariformSettings
 // publishing
 ///////////////
 
-crossScalaVersions := Seq("2.12.0", "2.11.8", "2.10.6")
+crossScalaVersions := Seq("2.13.0", "2.12.8", "2.11.12", "2.10.6")
 publishMavenStyle := true
 publishTo <<= version { v: String =>
   val nexus = "https://oss.sonatype.org/"

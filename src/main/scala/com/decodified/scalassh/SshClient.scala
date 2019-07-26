@@ -26,7 +26,7 @@ import net.schmizz.sshj.userauth.method.AuthMethod
 import com.jcraft.jsch.agentproxy._
 import com.jcraft.jsch.agentproxy.connector._
 import com.jcraft.jsch.agentproxy.sshj._
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 import scala.util.{ Try, Success, Failure }
 import scala.io.Source
 
@@ -133,7 +133,7 @@ class SshClient(val config: HostConfig) extends ScpTransferable {
         }
       case AgentLogin(user, host) ⇒
         protect("Could not authenticate (with agent proxy) to") {
-          client.auth(user, agentProxyAuthMethods)
+          client.auth(user, agentProxyAuthMethods.asJava)
           client
         }
     }
